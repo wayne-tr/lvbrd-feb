@@ -15,7 +15,7 @@
     "ios": {
       "usesAppleSignIn": true,
       "supportsTablet": true,
-      "bundleIdentifier": "dev.privy.example",
+      "bundleIdentifier": "com.example.myapp",
       "associatedDomains": ["webcredentials:<your-associated-domain>"],
       "infoPlist": {
         "NSAppTransportSecurity": {
@@ -28,7 +28,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "dev.privy.example"
+      "package": "com.example.myapp"
     },
     "web": {
       "bundler": "metro",
@@ -36,8 +36,8 @@
       "favicon": "./assets/images/favicon.png"
     },
     "extra": {
-      "privyAppId": "<your-privy-app-id>",
-      "privyClientId": "<your-privy-app-client-id>",
+      "privyAppId": "cm72uyllf00c97loxqrub9juo",
+      "privyClientId": "client-WY5gwy7sTgMQzM246XY6PimuxMgSNuXcb1UyGcp6CkuUu",
       "passkeyAssociatedDomain": "https://<your-associated-domain>"
     },
     "plugins": [

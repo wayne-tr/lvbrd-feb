@@ -34,15 +34,15 @@ export default function LoginScreen() {
         marginHorizontal: 10,
       }}
     >
-      <Text>Privy App ID:</Text>
+      {/* <Text>Privy App ID:</Text>
       <Text style={{ fontSize: 10 }}>
         {Constants.expoConfig?.extra?.privyAppId}
       </Text>
       <Text>Privy Client ID:</Text>
       <Text style={{ fontSize: 10 }}>
         {Constants.expoConfig?.extra?.privyClientId}
-      </Text>
-      <Text>
+      </Text> */}
+      {/* <Text>
         Navigate to your{" "}
         <Text
           onPress={() =>
@@ -69,12 +69,12 @@ export default function LoginScreen() {
           dashboard
         </Text>{" "}
         and ensure the following value is listed as an `Allowed app URL scheme`:
-      </Text>
-      <Text style={{ fontSize: 10 }}>
+      </Text> */}
+      {/* <Text style={{ fontSize: 10 }}>
         {Application.applicationId === "host.exp.Exponent"
           ? "exp"
           : Constants.expoConfig?.scheme}
-      </Text>
+      </Text> */}
 
       <Button
         title="Login with Privy UIs"
@@ -89,19 +89,10 @@ export default function LoginScreen() {
         }}
       />
 
-      <Button
-        title="Login using Passkey"
-        onPress={() =>
-          loginWithPasskey({
-            relyingParty: Constants.expoConfig?.extra?.passkeyAssociatedDomain,
-          })
-        }
-      />
-
       <View
         style={{ display: "flex", flexDirection: "column", gap: 5, margin: 10 }}
       >
-        {["github", "google", "discord", "apple"].map((provider) => (
+        {["google", "discord", "apple"].map((provider) => (
           <View key={provider}>
             <Button
               title={`Login with ${provider}`}
