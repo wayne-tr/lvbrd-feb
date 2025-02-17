@@ -7,8 +7,10 @@ import {
   ScrollView,
   StyleSheet,
   SafeAreaView,
+  Dimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Video, ResizeMode } from "expo-av";
 
 import {
   usePrivy,
@@ -39,6 +41,8 @@ const toMainIdentifier = (x: PrivyUser["linked_accounts"][number]) => {
 
   return x.type;
 };
+
+const { width: screenWidth } = Dimensions.get("window");
 
 export const UserScreen = () => {
   const [password, setPassword] = useState("");
@@ -89,6 +93,17 @@ export const UserScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Video Background */}
+      <Video
+        source={require("../assets/background.mp4")} // Add your video to assets folder
+        style={styles.backgroundVideo}
+        isLooping
+        shouldPlay
+        resizeMode={ResizeMode.COVER}
+        isMuted={true}
+      />
+      <View style={styles.overlay} />
+
       {/* Main Content Area */}
       <View style={styles.content}>
         <ScrollView style={{ borderColor: "rgba(0,0,0,0.1)", borderWidth: 1 }}>
@@ -101,22 +116,27 @@ export const UserScreen = () => {
             }}
           >
             <View>
-              <Text style={{ fontWeight: "bold" }}>User ID</Text>
-              <Text>{user.id}</Text>
+              <Text style={[styles.text, { fontWeight: "bold" }]}>User ID</Text>
+              <Text style={styles.text}>{user.id}</Text>
             </View>
 
             <View>
-              <Text style={{ fontWeight: "bold" }}>Linked accounts</Text>
+              <Text style={[styles.text, { fontWeight: "bold" }]}>
+                Linked accounts
+              </Text>
               {user?.linked_accounts.length ? (
                 <View style={{ display: "flex", flexDirection: "column" }}>
                   {user?.linked_accounts?.map((m) => (
                     <Text
                       key={m.verified_at}
-                      style={{
-                        color: "rgba(0,0,0,0.5)",
-                        fontSize: 12,
-                        fontStyle: "italic",
-                      }}
+                      style={[
+                        styles.text,
+                        {
+                          color: "rgba(255,255,255,0.5)",
+                          fontSize: 12,
+                          fontStyle: "italic",
+                        },
+                      ]}
                     >
                       {m.type}: {toMainIdentifier(m)}
                     </Text>
@@ -160,6 +180,18 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    marginBottom: 60,
+  },
+  backgroundVideo: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 60,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    bottom: 60,
   },
   bottomNav: {
     flexDirection: "row",
@@ -176,5 +208,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 10,
     marginTop: 4,
+  },
+  text: {
+    color: "#fff",
   },
 });
