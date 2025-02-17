@@ -115,7 +115,7 @@ export const UserScreen = () => {
               gap: 10,
             }}
           >
-            <View>
+            {/* <View>
               <Text style={[styles.text, { fontWeight: "bold" }]}>User ID</Text>
               <Text style={styles.text}>{user.id}</Text>
             </View>
@@ -145,6 +145,7 @@ export const UserScreen = () => {
               ) : null}
             </View>
 
+            */}
             <Button title="Logout" onPress={logout} />
           </View>
         </ScrollView>

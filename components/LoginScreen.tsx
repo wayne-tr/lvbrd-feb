@@ -61,7 +61,7 @@ export default function LoginScreen() {
         </TouchableOpacity>
       </View>
 
-      {error && <Text style={styles.errorText}>Error: {error}</Text>}
+      {/* {error && <Text style={styles.errorText}>Error: {error}</Text>} */}
     </View>
   );
 }

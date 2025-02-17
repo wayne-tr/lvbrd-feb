@@ -1,6 +1,6 @@
 import Constants from "expo-constants";
 import { Stack } from "expo-router";
-import { PrivyProvider, PrivyElements } from "@privy-io/expo";
+import { PrivyProvider } from "@privy-io/expo";
 import {
   Inter_400Regular,
   Inter_500Medium,
@@ -22,7 +22,6 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
       </Stack>
-      <PrivyElements />
     </PrivyProvider>
   );
 }
