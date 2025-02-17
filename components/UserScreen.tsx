@@ -80,34 +80,6 @@ export const UserScreen = () => {
 
   return (
     <View>
-      <Button
-        title="Link Passkey"
-        onPress={() =>
-          linkWithPasskey({
-            relyingParty: Constants.expoConfig?.extra?.passkeyAssociatedDomain,
-          })
-        }
-      />
-      <View style={{ display: "flex", flexDirection: "column", margin: 10 }}>
-        {(["github", "google", "discord", "apple"] as const).map((provider) => (
-          <View key={provider}>
-            <Button
-              title={`Link ${provider}`}
-              disabled={oauth.state.status === "loading"}
-              onPress={() => oauth.start({ provider })}
-            ></Button>
-          </View>
-        ))}
-      </View>
-
-      {wallet.status === "needs-recovery" && (
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Password"
-        />
-      )}
-
       <ScrollView style={{ borderColor: "rgba(0,0,0,0.1)", borderWidth: 1 }}>
         <View
           style={{
@@ -142,73 +114,6 @@ export const UserScreen = () => {
             ) : null}
           </View>
 
-          <View>
-            {account?.address && (
-              <>
-                <Text style={{ fontWeight: "bold" }}>Embedded Wallet</Text>
-                <Text>{account?.address}</Text>
-              </>
-            )}
-
-            {wallet.status === "connecting" && <Text>Loading wallet...</Text>}
-
-            {wallet.status === "error" && <Text>{wallet.error}</Text>}
-
-            {wallet.status === "not-created" && (
-              <Button title="Create Wallet" onPress={() => wallet.create()} />
-            )}
-
-            {wallet.status === "connected" && (
-              <Button
-                title="Sign Message"
-                onPress={() => signMessage(wallet.provider)}
-              />
-            )}
-
-            {wallet.status === "connected" && (
-              <>
-                <TextInput
-                  value={chainId}
-                  onChangeText={setChainId}
-                  placeholder="Chain Id"
-                />
-                <Button
-                  title="Switch Chain"
-                  onPress={() => switchChain(wallet.provider, chainId)}
-                />
-              </>
-            )}
-
-            {wallet.status === "needs-recovery" && (
-              <Button
-                title="Recover Wallet"
-                onPress={() => wallet.recover(password)}
-              />
-            )}
-          </View>
-
-          <View style={{ display: "flex", flexDirection: "column" }}>
-            {signedMessages.map((m) => (
-              <React.Fragment key={m}>
-                <Text
-                  style={{
-                    color: "rgba(0,0,0,0.5)",
-                    fontSize: 12,
-                    fontStyle: "italic",
-                  }}
-                >
-                  {m}
-                </Text>
-                <View
-                  style={{
-                    marginVertical: 5,
-                    borderBottomWidth: 1,
-                    borderBottomColor: "rgba(0,0,0,0.2)",
-                  }}
-                />
-              </React.Fragment>
-            ))}
-          </View>
           <Button title="Logout" onPress={logout} />
         </View>
       </ScrollView>

@@ -34,52 +34,10 @@ export default function LoginScreen() {
         marginHorizontal: 10,
       }}
     >
-      {/* <Text>Privy App ID:</Text>
-      <Text style={{ fontSize: 10 }}>
-        {Constants.expoConfig?.extra?.privyAppId}
-      </Text>
-      <Text>Privy Client ID:</Text>
-      <Text style={{ fontSize: 10 }}>
-        {Constants.expoConfig?.extra?.privyClientId}
-      </Text> */}
-      {/* <Text>
-        Navigate to your{" "}
-        <Text
-          onPress={() =>
-            Linking.openURL(
-              `https://dashboard.privy.io/apps/${Constants.expoConfig?.extra?.privyAppId}/settings?setting=clients`
-            )
-          }
-        >
-          dashboard
-        </Text>{" "}
-        and ensure the following Expo Application ID is listed as an `Allowed
-        app identifier`:
-      </Text>
-      <Text style={{ fontSize: 10 }}>{Application.applicationId}</Text>
-      <Text>
-        Navigate to your{" "}
-        <Text
-          onPress={() =>
-            Linking.openURL(
-              `https://dashboard.privy.io/apps/${Constants.expoConfig?.extra?.privyAppId}/settings?setting=clients`
-            )
-          }
-        >
-          dashboard
-        </Text>{" "}
-        and ensure the following value is listed as an `Allowed app URL scheme`:
-      </Text> */}
-      {/* <Text style={{ fontSize: 10 }}>
-        {Application.applicationId === "host.exp.Exponent"
-          ? "exp"
-          : Constants.expoConfig?.scheme}
-      </Text> */}
-
       <Button
         title="Login with Privy UIs"
         onPress={() => {
-          login({ loginMethods: ["email"] })
+          login({ loginMethods: ["twitter"] })
             .then((session) => {
               console.log("User logged in", session.user);
             })
@@ -92,7 +50,7 @@ export default function LoginScreen() {
       <View
         style={{ display: "flex", flexDirection: "column", gap: 5, margin: 10 }}
       >
-        {["google", "discord", "apple"].map((provider) => (
+        {["twitter"].map((provider) => (
           <View key={provider}>
             <Button
               title={`Login with ${provider}`}
