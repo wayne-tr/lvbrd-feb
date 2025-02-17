@@ -37,7 +37,7 @@ export default function LoginScreen() {
       <Button
         title="Login with Privy UIs"
         onPress={() => {
-          login({ loginMethods: ["twitter"] })
+          login({ loginMethods: ["email"] })
             .then((session) => {
               console.log("User logged in", session.user);
             })
